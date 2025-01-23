@@ -11,7 +11,45 @@
     </head>
     <body>
         <h1>Hola Mundo</h1>
-        
+
+        <form method="post" action="{% url 'add_person' %}" >
+            {% csrf_token %}
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="first_name" placeholder='Nombre'><br><br>
+            <label for="flast">Last name:</label><br>
+            <input type="text" id="fname" name="last_name" placeholder='Apellido'><br><br>
+            <input type="submit" value="Agregar">
+        </form>
+       
+        <table>
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Acciones</th>
+
+            </tr>
+            {% for person in persons %}
+            <tr>  
+            
+              <td>{{ person.first_name }}</td>
+              <td>{{ person.last_name }}</td>
+              <td>
+                <form method="post" action="{% url 'delete_person' person.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Eliminar">
+                </form>
+                </td>
+                <td>
+                <form method="pogetst" action="{% url 'update_person' person.id %}">
+                    {% csrf_token %}
+                <input type="submit" value="Actualizar">
+                </form>
+                </td>
+                
+            </tr>
+             {% endfor %} 
+          </table>
+          
         
     </body>
 </html>

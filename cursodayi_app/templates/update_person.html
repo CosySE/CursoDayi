@@ -1,0 +1,11 @@
+<html>
+<head></head>
+<body>
+    <h1>Actualizar Persona</h1>
+    <form method="post" action="{% url 'update_person' form.instance.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>
